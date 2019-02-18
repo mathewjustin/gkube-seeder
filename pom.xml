@@ -10,12 +10,14 @@
     </parent>
     <groupId>com.gkube</groupId>
     <artifactId>kube-seeder</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>v1</version>
     <name>kube-seeder</name>
     <description>GKE-Kubernetes-Seeder project on Maven|</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <gcr.project.id>gkube-seeder</gcr.project.id>
+        <docker.image.prefix>gcr.io/${gcr.project.id}:${version}</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -29,6 +31,13 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -39,10 +48,29 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+                </configuration>
+            </plugin>
+            <!-- tag::plugin[] -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.9</version>
+                <configuration>
+                    <repository>${docker.image.prefix}/${project.artifactId}:</repository>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
