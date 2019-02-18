@@ -25,6 +25,10 @@ Open shell
    and push to container registry. 
    
        docker build -t gcr.io/${PROJECT_ID}/kube-seeder:v1 .
+       or
+       ./mvnw install dockerfile:build : for this particular project
+    
+    if this step throwing any error, switch to root user, connect to 
     
    After this step you will be able to see the newly built image , by listing the local images "docker images" 
    
