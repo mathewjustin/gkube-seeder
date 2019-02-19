@@ -1,8 +1,10 @@
 package com.gkube.kubeseeder.rest;
 
+import io.netty.handler.codec.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.json.GsonJsonParser;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +30,16 @@ public class ListController {
                 .limit(Integer.parseInt(limit))
                 .collect(Collectors.toList());
     }
+
+
+    @GetMapping("/")
+    public List<String>defaultpage(@RequestParam(value = "lim",defaultValue = "10")String limit) throws IOException {
+
+            return getNames("10");
+
+    }
+
+
+
 
 }
