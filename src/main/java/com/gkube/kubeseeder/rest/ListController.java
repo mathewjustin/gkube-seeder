@@ -26,8 +26,12 @@ public class ListController {
 
     @GetMapping("/names")
     public List<String>getNames(@RequestParam(value = "lim",defaultValue = "10")String limit) throws IOException {
+
+        int maxSize = Integer.parseInt(limit);
+        maxSize=maxSize<0?10:maxSize;
+
         return names.stream()
-                .limit(Integer.parseInt(limit))
+                .limit(maxSize)
                 .collect(Collectors.toList());
     }
 

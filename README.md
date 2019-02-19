@@ -105,6 +105,9 @@ Open shell
    
    This end point will give a list of names.
    
+   eg:
+    <External IP>/names
+       ["Aaberg","Aalst","Aara","Aaren","Aarika","Aaron","Aaronson","Ab","Aba","Abad"]
    
    
 
