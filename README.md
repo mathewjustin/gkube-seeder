@@ -68,7 +68,7 @@ Open shell
   and schedules them to run on the individual nodes in your cluster.
   In this case, the Deployment will be running only one Pod of your application.  
   
-      kubectl run kube-web --image=gcr.io/${PROJECT_ID}/kube-seeder:v1 --port 
+      kubectl run kube-web --image=gcr.io/${PROJECT_ID}/kube-seeder:v1 --port 8080
 
      To see the Pod created by the Deployment, run the following command:
 
@@ -97,6 +97,16 @@ Open shell
      kubectl set image deployment/kube-web kube-web=gcr.io/${PROJECT_ID}/kube-seeder:v2
 
 
+* Verify the app working as expected deployed.
+
+   App will expose a simple /names end point 
+   
+       <External IP>/names
+   
+   This end point will give a list of names.
+   
+   
+   
 
    
 
