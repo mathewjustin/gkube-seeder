@@ -16,8 +16,8 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <gcr.project.id>gkube-seeder</gcr.project.id>
-        <docker.image.prefix>gcr.io/${gcr.project.id}:${version}</docker.image.prefix>
+        <gcr.project.id>gkubeseeder</gcr.project.id>
+        <docker.image.prefix>gcr.io/${gcr.project.id}/${version}</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -55,6 +55,11 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
@@ -70,10 +75,6 @@
                 <configuration>
                     <repository>${docker.image.prefix}/${project.artifactId}:</repository>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
             <plugin>
